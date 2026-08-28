@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arooj Bibi — Portfolio</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0A12;
+  --glass: rgba(255,255,255,0.045);
+  --glass-strong: rgba(255,255,255,0.075);
+  --hairline: rgba(255,255,255,0.10);
+  --violet:#8B7CF6;
+  --magenta:#E85EC0;
+  --cyan:#54D6E0;
+  --gold:#F0C97A;
+  --text:#F5F3FA;
+  --muted:#A7A1C0;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background-color:var(--bg);
+  background-image:
+    radial-gradient(circle at 15% 10%, rgba(139,124,246,0.22), transparent 42%),
+    radial-gradient(circle at 85% 15%, rgba(232,94,192,0.18), transparent 45%),
+    radial-gradient(circle at 50% 95%, rgba(84,214,224,0.16), transparent 45%);
+  background-attachment:fixed;
+  color:var(--text);
+  font-family:'Manrope', sans-serif;
+  position:relative;
+}
+h1,h2,h3,.display-font{ font-family:'Fraunces', serif; font-weight:500; }
+a{ color:var(--cyan); text-decoration:none; }
+a:hover{ color:var(--magenta); }
+
+/* ---------- AURORA BACKDROP ---------- */
+.aurora-field{
+  position:fixed; inset:0; z-index:-1; overflow:hidden; background:var(--bg);
+}
+.orb{
+  position:absolute; border-radius:50%; filter:blur(90px); opacity:.55;
+  background:radial-gradient(circle at 30% 30%, var(--c1), var(--c2) 60%, transparent 75%);
+  animation:drift 22s ease-in-out infinite;
+}
+.orb-a{ --c1:var(--violet); --c2:#3D2E82; width:52vw; height:52vw; top:-18vw; left:-12vw; animation-duration:26s; }
+.orb-b{ --c1:var(--magenta); --c2:#7A2A5C; width:40vw; height:40vw; top:8vw; right:-14vw; animation-duration:20s; animation-delay:-6s; }
+.orb-c{ --c1:var(--cyan); --c2:#1D5E66; width:36vw; height:36vw; bottom:-14vw; left:20vw; animation-duration:24s; animation-delay:-12s; }
+@keyframes drift{
+  0%,100%{ transform:translate(0,0) scale(1); }
+  50%{ transform:translate(3vw,-3vw) scale(1.08); }
+}
+.grain{ position:fixed; inset:0; z-index:-1; opacity:.03; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+@media (prefers-reduced-motion: reduce){ .orb{ animation:none; } }
+
+/* ---------- GLASS ---------- */
+.glass{
+  background:var(--glass);
+  border:1px solid var(--hairline);
+  border-radius:20px;
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+}
+.glass-strong{ background:var(--glass-strong); }
+
+/* ---------- NAV ---------- */
+.navbar{ background:rgba(10,10,18,.55); backdrop-filter:blur(14px); border-bottom:1px solid var(--hairline); }
+.navbar-brand{ font-family:'Fraunces',serif; font-weight:600; font-size:1.4rem; color:var(--text) !important; }
+.navbar-brand .flare{ background:linear-gradient(90deg,var(--violet),var(--magenta)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.nav-link{ color:var(--muted) !important; font-size:.92rem; margin:0 .5rem; }
+.nav-link:hover{ color:var(--text) !important; }
+.btn-flare{
+  background:linear-gradient(90deg,var(--violet),var(--magenta));
+  color:#0A0A12; font-weight:700; border:none; padding:.65rem 1.5rem; border-radius:999px;
+}
+.btn-flare:hover{ filter:brightness(1.08); color:#0A0A12; }
+.btn-ghost{
+  border:1px solid var(--hairline); color:var(--text); padding:.65rem 1.5rem; border-radius:999px;
+}
+.btn-ghost:hover{ border-color:var(--cyan); color:var(--cyan); }
+
+/* ---------- HERO ---------- */
+.hero{ padding:9.5rem 0 6rem; }
+.eyebrow{
+  font-size:.76rem; letter-spacing:.24em; text-transform:uppercase; color:var(--cyan); font-weight:700;
+}
+.hero h1{
+  font-size:clamp(2.6rem,6vw,4.6rem); line-height:1.05; margin:1rem 0 1.4rem;
+}
+.hero h1 .flare{
+  background:linear-gradient(90deg,var(--violet) 0%, var(--magenta) 50%, var(--gold) 100%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+  font-style:italic;
+}
+.hero p.lede{ color:var(--muted); font-size:1.15rem; max-width:52ch; }
+.avatar-ring{
+  width:230px; height:230px; border-radius:50%; margin:0 auto;
+  padding:5px;
+  background:conic-gradient(from 180deg, var(--violet), var(--magenta), var(--gold), var(--cyan), var(--violet));
+  animation:spin 12s linear infinite;
+}
+@media (prefers-reduced-motion: reduce){ .avatar-ring{ animation:none; } }
+@keyframes spin{ to{ transform:rotate(360deg); } }
+.avatar-inner{
+  width:100%; height:100%; border-radius:50%; background:var(--bg);
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Fraunces',serif; font-size:3.4rem; color:var(--text);
+}
+
+/* ---------- SECTION ---------- */
+.section{ padding:6rem 0; }
+.section-head{ margin-bottom:3rem; }
+.section-title{ font-size:clamp(1.9rem,3vw,2.6rem); }
+.section-title .flare{
+  background:linear-gradient(90deg,var(--cyan),var(--violet));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+
+/* ---------- SKILL CARDS ---------- */
+.skill-card{ padding:2rem; height:100%; transition:transform .35s ease, border-color .35s ease; }
+.skill-card:hover{ transform:translateY(-8px); border-color:var(--violet); }
+.skill-icon{
+  width:46px; height:46px; border-radius:14px; display:flex; align-items:center; justify-content:center;
+  background:linear-gradient(135deg,var(--violet),var(--magenta)); font-size:1.3rem; margin-bottom:1.2rem;
+}
+.skill-card h4{ font-family:'Fraunces',serif; font-size:1.2rem; margin-bottom:.6rem; }
+.chip{
+  display:inline-block; font-size:.78rem; border:1px solid var(--hairline); border-radius:999px;
+  padding:.28rem .8rem; margin:.2rem .25rem .2rem 0; color:var(--muted);
+}
+
+/* ---------- PROJECT ---------- */
+.project-glass{ padding:2.6rem; }
+.pipeline{ display:flex; flex-wrap:wrap; margin:2.2rem 0 1.6rem; gap:.9rem; }
+.pnode{
+  flex:1 1 150px; border-radius:16px; padding:1.1rem; text-align:center;
+  background:rgba(255,255,255,.03); border:1px solid var(--hairline); position:relative;
+}
+.pnode::after{
+  content:"→"; position:absolute; right:-1.35rem; top:50%; transform:translateY(-50%);
+  color:var(--muted); font-size:1.1rem;
+}
+.pnode:last-child::after{ content:""; }
+@media (max-width:767px){ .pnode::after{ content:""; } }
+.pnode .pnum{
+  display:inline-block; width:26px; height:26px; border-radius:50%; line-height:26px; font-size:.7rem;
+  background:linear-gradient(135deg,var(--cyan),var(--violet)); color:#0A0A12; font-weight:700; margin-bottom:.5rem;
+}
+.pnode h5{ font-size:.92rem; margin-bottom:.2rem; }
+.pnode p{ font-size:.78rem; color:var(--muted); margin:0; }
+.stack-line{ font-size:.88rem; color:var(--muted); }
+.stack-line b{ color:var(--text); }
+
+/* ---------- BEYOND CODE ---------- */
+.side-glass{ padding:2.2rem; height:100%; }
+.tag-gold{
+  font-size:.74rem; color:var(--gold); border:1px solid rgba(240,201,122,.35); border-radius:999px;
+  padding:.28rem .8rem; display:inline-block; margin-bottom:.9rem;
+}
+
+/* ---------- TIMELINE / EDU ---------- */
+.edu-glass{ padding:2.4rem; }
+.edu-row{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5rem; align-items:baseline; }
+.edu-row .yr{ color:var(--muted); font-size:.88rem; }
+
+/* ---------- CONTACT ---------- */
+.contact-glass{ padding:3.5rem; text-align:center; }
+.contact-links{ display:flex; justify-content:center; flex-wrap:wrap; margin-top:1.8rem; }
+.contact-links a{
+  margin:.4rem .8rem; padding-bottom:2px; border-bottom:1px solid var(--hairline); font-size:.95rem;
+}
+
+footer{ padding:2.2rem 0; text-align:center; font-size:.85rem; color:var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="aurora-field">
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="orb orb-c"></div>
+</div>
+<div class="grain"></div>
+
+<nav class="navbar navbar-expand-lg fixed-top py-3">
+  <div class="container">
+    <a class="navbar-brand" href="#">Arooj <span class="flare">Bibi</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" style="border-color:var(--hairline)">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="nav">
+      <a class="nav-link" href="#skills">Skills</a>
+      <a class="nav-link" href="#project">Project</a>
+      <a class="nav-link" href="#beyond">Beyond Code</a>
+      <a class="nav-link" href="#education">Education</a>
+      <a class="btn btn-flare btn-sm ms-lg-3 mt-2 mt-lg-0" href="#contact">Let's Talk</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7">
+        <p class="eyebrow">Software Engineering Student</p>
+        <h1>Building clean systems<br>with a <span class="flare">little sparkle.</span></h1>
+        <p class="lede">I'm Arooj — I design and build web applications and machine-learning systems, with a growing focus on network security. I care about work that's technically sound and genuinely nice to look at.</p>
+        <div class="d-flex gap-3 flex-wrap mt-4">
+          <a href="#project" class="btn btn-flare">Explore My Work</a>
+          <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+        </div>
+      </div>
+      <div class="col-lg-5 text-center">
+        <div class="avatar-ring">
+          <div class="avatar-inner">AB</div>
+        </div>
+        <div class="d-flex justify-content-center flex-wrap mt-4">
+          <span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">JavaScript</span>
+          <span class="chip">Bootstrap</span><span class="chip">Python</span><span class="chip">Streamlit</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="container">
+    <div class="section-head text-center">
+      <p class="eyebrow">Toolkit</p>
+      <h2 class="section-title mt-2">Skills &amp; <span class="flare">Craft</span></h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="glass skill-card">
+          <div class="skill-icon">🌐</div>
+          <h4>Web Development</h4>
+          <p style="color:var(--muted); font-size:.92rem;">Responsive, accessible interfaces built with care.</p>
+          <div class="mt-2">
+            <span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">JavaScript</span><span class="chip">Bootstrap</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="glass skill-card">
+          <div class="skill-icon">🧠</div>
+          <h4>ML &amp; Data</h4>
+          <p style="color:var(--muted); font-size:.92rem;">Applied machine learning, from data to deployment.</p>
+          <div class="mt-2">
+            <span class="chip">Python</span><span class="chip">scikit-learn</span><span class="chip">Streamlit</span><span class="chip">Colab</span><span class="chip">Kaggle</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="glass skill-card">
+          <div class="skill-icon">🛠️</div>
+          <h4>Tools &amp; Practice</h4>
+          <p style="color:var(--muted); font-size:.92rem;">Clean workflows and reliable collaboration.</p>
+          <div class="mt-2">
+            <span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">GitHub Pages</span><span class="chip">Data Prep</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT -->
+<section class="section" id="project">
+  <div class="container">
+    <div class="section-head text-center">
+      <p class="eyebrow">Featured Work</p>
+      <h2 class="section-title mt-2">AI-Powered Multi-Class<br><span class="flare">Intrusion Detection System</span></h2>
+    </div>
+    <div class="glass project-glass">
+      <p style="color:var(--muted); max-width:70ch;">
+        A network intrusion detection system that classifies traffic into <b style="color:var(--text)">normal behavior and four distinct attack types</b>
+        — DoS, Probe, R2L, and U2R — instead of a simple binary safe/unsafe flag. Built end-to-end as my final year project.
+      </p>
+      <div class="pipeline">
+        <div class="pnode"><span class="pnum">1</span><h5>Ingest Traffic</h5><p>Raw network data collected</p></div>
+        <div class="pnode"><span class="pnum">2</span><h5>Preprocess</h5><p>Clean &amp; extract features</p></div>
+        <div class="pnode"><span class="pnum">3</span><h5>Train Model</h5><p>Multi-class training in Colab</p></div>
+        <div class="pnode"><span class="pnum">4</span><h5>Classify</h5><p>Normal / DoS / Probe / R2L / U2R</p></div>
+        <div class="pnode"><span class="pnum">5</span><h5>Serve</h5><p>Live predictions via Streamlit</p></div>
+      </div>
+      <p class="stack-line"><b>Stack:</b> Python · scikit-learn · Streamlit · Google Colab · Kaggle</p>
+      <a href="https://github.com/AROOJ-BIBI" target="_blank">View the Code on GitHub →</a>
+    </div>
+  </div>
+</section>
+
+<!-- BEYOND CODE -->
+<section class="section" id="beyond">
+  <div class="container">
+    <div class="section-head text-center">
+      <p class="eyebrow">Beyond the IDE</p>
+      <h2 class="section-title mt-2">Life <span class="flare">Outside Code</span></h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-lg-7">
+        <div class="glass side-glass">
+          <span class="tag-gold">Entrepreneurship</span>
+          <h3 class="h4 mb-2">Owner — Natural Crystal Shop on Etsy</h3>
+          <p style="color:var(--muted);">
+            Alongside my studies, I independently run a small e-commerce shop selling ethically-sourced natural crystals —
+            handling sourcing, listing design, photography, and customer communication end-to-end. It's taught me as much
+            about UX and presentation as any web project has.
+          </p>
+          <a href="#">Visit the Shop →</a>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="glass side-glass">
+          <span class="tag-gold">Curiosity</span>
+          <h3 class="h4 mb-3">What I'm exploring</h3>
+          <span class="chip">Machine Learning</span>
+          <span class="chip">Network Security</span>
+          <span class="chip">Web Development</span>
+          <span class="chip">Small Business</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section" id="education">
+  <div class="container">
+    <div class="section-head text-center">
+      <p class="eyebrow">Background</p>
+      <h2 class="section-title mt-2">Education</h2>
+    </div>
+    <div class="glass edu-glass">
+      <div class="edu-row">
+        <h3 class="h5 mb-1">BS, Software Engineering — Kohsar University Murree</h3>
+        <span class="yr">Expected 2026</span>
+      </div>
+      <p style="color:var(--muted); margin-top:.7rem; margin-bottom:0;">
+        Coursework focus: Machine Learning, Web Development, Data Structures, Cybersecurity Fundamentals.
+        Final Year Project: AI-Powered Multi-Class Intrusion Detection System.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="glass contact-glass">
+      <p class="eyebrow">Say Hello</p>
+      <h2 class="section-title mt-2 mb-2">Let's build <span class="flare">something beautiful.</span></h2>
+      <p style="color:var(--muted); max-width:50ch; margin:0 auto;">Open to internships, junior dev roles, and collaborations in web development, ML, or security.</p>
+      <div class="contact-links">
+        <a href="mailto:aroojabbasi134@gmail.com">aroojabbasi134@gmail.com</a>
+        <a href="https://github.com/AROOJ-BIBI" target="_blank">github.com/AROOJ-BIBI</a>
+        <a href="https://linkedin.com/in/aroojbbi" target="_blank">linkedin.com/in/aroojbbi</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">&copy; 2026 Arooj Bibi. Designed &amp; built with HTML, CSS, JS &amp; Bootstrap.</div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
